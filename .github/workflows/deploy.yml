@@ -1,0 +1,38 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Log in to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USENAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and push Docker image
+        run: |
+          docker build -t dltkdgus482/raspberrypi4:latest .
+          docket push dltkdgus482/raspberrypi4:latest
+
+      - name: Deploy to Raspberry Pi
+        uses: appleboy/ssh-action@v0.1.8
+        with:
+          host: ${{ secrets.RPI_HOST }}
+          username: ${{ secrets.RPI_USER }}
+          key: ${{ secrets.RPI_SSH_KEY }}
+          port: 22
+          script: |
+            docker pull dltkdgus482/raspberrypi4:latest
+            docker stop local_server || true
+            docker rm local_server || true
+            docker run -d --name local_server -p 3000:3000 dltkdgus482/raspberrypi4:latest
