@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . .
 
 # Install dependencies
-RUN yarn install --ignore-engines
+RUN yarn install --production --ignore-engines
 
 # Build the application
 RUN yarn build
