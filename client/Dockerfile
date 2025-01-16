@@ -1,5 +1,5 @@
-# Base image
-FROM node:23.6.0-alpine AS build
+# Base image (ARM64 호환)
+FROM --platform=linux/arm64 node:23.6.0-alpine AS build
 
 # Set working directory
 WORKDIR /app
