@@ -1,0 +1,19 @@
+# Node modules
+node_modules/
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Build output
+dist/
+.vite/
+
+# Editor settings
+*.log
+.DS_Store
+.idea/
+.vscode/
+*.swp
