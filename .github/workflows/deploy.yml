@@ -30,9 +30,9 @@ jobs:
           host: ${{ secrets.RPI_HOST }}
           username: ${{ secrets.RPI_USER }}
           key: ${{ secrets.RPI_SSH_KEY }}
-          port: ${{ secrets.RPI_PORT }}
+          port: 22
           script: |
             docker pull dltkdgus482/raspberrypi4:latest
             docker stop local_server || true
             docker rm local_server || true
-            docker run -d --name local_server -p 3000:3000 dltkdgus482/raspberrypi4:latest
+            docker run -d --name local_server -p ${{ secrets.RPI_PORT }}:3000 dltkdgus482/raspberrypi4:latest
