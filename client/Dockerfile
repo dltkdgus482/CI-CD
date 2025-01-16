@@ -14,7 +14,7 @@ COPY . .
 RUN yarn set version berry
 
 # Install dependencies
-RUN yarn install --production --ignore-engines
+RUN yarn install
 
 # Build the application
 RUN yarn build
