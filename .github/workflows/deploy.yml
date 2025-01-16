@@ -22,7 +22,7 @@ jobs:
       - name: Build and push Docker image
         run: |
           docker build -t dltkdgus482/raspberrypi4:latest -f ./client/Dockerfile ./client
-          docket push dltkdgus482/raspberrypi4:latest
+          docker push dltkdgus482/raspberrypi4:latest
 
       - name: Deploy to Raspberry Pi
         uses: appleboy/ssh-action@v0.1.8
