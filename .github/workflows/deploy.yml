@@ -25,7 +25,7 @@ jobs:
           docker push dltkdgus482/raspberrypi4:latest
 
       - name: Deploy to Raspberry Pi
-        uses: appleboy/ssh-action@v1.2.0
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.RPI_HOST }}
           username: ${{ secrets.RPI_USER }}
